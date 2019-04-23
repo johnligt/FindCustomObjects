@@ -1,0 +1,4 @@
+@model FindCustomObjects.Models.ViewModels.PageViewModel<FindCustomObjects.Models.Pages.LandingPage>
+<div class="campaign-wrapper">
+    @Html.PropertyFor(x => x.CurrentPage.MainContentArea, new { CssClass = "row equal-height", tag = Global.ContentAreaTags.FullWidth })
+</div>

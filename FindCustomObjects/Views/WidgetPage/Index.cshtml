@@ -1,0 +1,31 @@
+﻿@model FindCustomObjects.Models.ViewModels.WidgetPageViewModel
+
+@{
+    Layout = "~/Views/Shared/Layouts/_TwoPlusOne.cshtml";
+}
+
+<div class="row">
+    
+    <div class="span8">
+        <h2>@Model.CurrentPage.Title</h2>        
+    </div>
+    
+    @if (Model.Widget != null)
+    {
+        <div class="span8">
+            Widget ID : @Model.Widget.Id
+        </div>
+        <div class="span8">
+            Widget Name: @Model.Widget.WidgetName
+        </div>
+        <div class="span8">
+            Widget Description:  @Model.WidgetDescription
+        </div>
+    }
+    else
+    {
+        <div class="span8">
+            No widget with this ID.
+        </div>
+    }
+</div>
