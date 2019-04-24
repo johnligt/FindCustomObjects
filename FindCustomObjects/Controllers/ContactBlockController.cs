@@ -25,7 +25,7 @@ namespace FindCustomObjects.Controllers
         public override ActionResult Index(ContactBlock currentBlock)
         {
             ContactPage contactPage = null;
-            if(!ContentReference.IsNullOrEmpty(currentBlock.ContactPageLink))
+            if (!ContentReference.IsNullOrEmpty(currentBlock.ContactPageLink))
             {
                 contactPage = _contentLoader.Get<ContactPage>(currentBlock.ContactPageLink);
             }
@@ -33,21 +33,21 @@ namespace FindCustomObjects.Controllers
             var linkUrl = GetLinkUrl(currentBlock);
 
             var model = new ContactBlockModel
-                {
-                    Heading = currentBlock.Heading,
-                    Image = currentBlock.Image,
-                    ContactPage = contactPage,
-                    LinkUrl = GetLinkUrl(currentBlock),
-                    LinkText = currentBlock.LinkText,
-                    ShowLink = linkUrl != null
-                };
+            {
+                Heading = currentBlock.Heading,
+                Image = currentBlock.Image,
+                ContactPage = contactPage,
+                LinkUrl = GetLinkUrl(currentBlock),
+                LinkText = currentBlock.LinkText,
+                ShowLink = linkUrl != null
+            };
 
             //As we're using a separate view model with different property names than the content object
             //we connect the view models properties with the content objects so that they can be edited.
             ViewData.GetEditHints<ContactBlockModel, ContactBlock>()
                 .AddConnection(x => x.Heading, x => x.Heading)
                 .AddConnection(x => x.Image, x => x.Image)
-                .AddConnection(x => (object) x.ContactPage, x => (object) x.ContactPageLink)
+                .AddConnection(x => (object)x.ContactPage, x => (object)x.ContactPageLink)
                 .AddConnection(x => x.LinkText, x => x.LinkText);
 
             return PartialView(model);
